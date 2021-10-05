@@ -1,15 +1,28 @@
-// const fs = require('fs/promises')
-// const contacts = require('./contacts.json')
+const crypto = require("crypto");
 
-const listContacts = async () => {}
+const DB = require("./db");
+const db = new DB("contacts.json");
 
-const getContactById = async (contactId) => {}
+const listContacts = async () => {
+  return await db.read();
+};
 
-const removeContact = async (contactId) => {}
+const getContactById = async (contactId) => {};
 
-const addContact = async (body) => {}
+const removeContact = async (contactId) => {};
 
-const updateContact = async (contactId, body) => {}
+const addContact = async (body) => {
+  const contacts = await db.read();
+  const newContact = {
+    id: crypto.randomUUID(),
+    ...body,
+  };
+  contacts.push(newContact);
+  await db.write(contacts);
+  return newContact;
+};
+
+const updateContact = async (contactId, body) => {};
 
 module.exports = {
   listContacts,
@@ -17,4 +30,4 @@ module.exports = {
   removeContact,
   addContact,
   updateContact,
-}
+};
