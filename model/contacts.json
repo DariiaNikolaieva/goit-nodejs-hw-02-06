@@ -1,60 +1,60 @@
 [
   {
-    "id": 1,
-    "name": "Allen Raymond",
+    "id": "1",
+    "name": "Olga Ivanova",
     "email": "nulla.ante@vestibul.co.uk",
     "phone": "(992) 914-3792"
   },
   {
-    "id": 2,
+    "id": "2",
     "name": "Chaim Lewis",
     "email": "dui.in@egetlacus.ca",
     "phone": "(294) 840-6685"
   },
   {
-    "id": 3,
+    "id": "3",
     "name": "Kennedy Lane",
     "email": "mattis.Cras@nonenimMauris.net",
     "phone": "(542) 451-7038"
   },
   {
-    "id": 4,
+    "id": "4",
     "name": "Wylie Pope",
     "email": "est@utquamvel.net",
     "phone": "(692) 802-2949"
   },
   {
-    "id": 5,
+    "id": "5",
     "name": "Cyrus Jackson",
     "email": "nibh@semsempererat.com",
     "phone": "(501) 472-5218"
   },
   {
-    "id": 6,
+    "id": "6",
     "name": "Abbot Franks",
     "email": "scelerisque@magnis.org",
     "phone": "(186) 568-3720"
   },
   {
-    "id": 7,
+    "id": "7",
     "name": "Reuben Henry",
     "email": "pharetra.ut@dictum.co.uk",
     "phone": "(715) 598-5792"
   },
   {
-    "id": 8,
+    "id": "8",
     "name": "Simon Morton",
     "email": "dui.Fusce.diam@Donec.com",
     "phone": "(233) 738-2360"
   },
   {
-    "id": 9,
+    "id": "9",
     "name": "Thomas Lucas",
     "email": "nec@Nulla.com",
     "phone": "(704) 398-7993"
   },
   {
-    "id": 10,
+    "id": "10",
     "name": "Alec Howard",
     "email": "Donec.elementum@scelerisquescelerisquedui.net",
     "phone": "(748) 206-2688"
@@ -66,30 +66,15 @@
     "phone": "(068) 376-0652"
   },
   {
-    "id": "11041b79-64b1-4014-abac-06a8b92ad10c",
-    "name": "Dmytro",
-    "phone": "(068) 111-1111"
-  },
-  {
     "id": "4235de34-1291-4aab-af34-3e754cb54d93",
     "name": "Dmytro",
     "email": "dmytro@gmail.com",
     "phone": "(068) 111-1111"
   },
   {
-    "id": "03205e03-d29d-4ee5-a969-32a4b68f7a50",
-    "name": "Dmytro",
-    "email": "dmytro@gmail.com"
-  },
-  {
-    "id": "90a9d315-b8fc-426c-8531-15d5643066fb",
-    "name": "Dmytro",
-    "email": "dmytro@gmail.com"
-  },
-  {
-    "id": "6a9f89f6-501e-4049-9474-4127650475fd",
-    "name": "Dmytro",
-    "email": "dmytro@gmail.com",
+    "id": "af00de79-e333-48c2-9688-318e6984dc48",
+    "name": "Svetlana",
+    "email": "svetik@ukr.net",
     "phone": "(068) 111-1111"
   }
 ]
