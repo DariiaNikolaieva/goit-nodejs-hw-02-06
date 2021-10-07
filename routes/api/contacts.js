@@ -31,14 +31,6 @@ router.get("/:contactId", async (req, res, next) => {
 
 router.post("/", async (req, res, next) => {
   try {
-    const { name, email, phone } = req.body;
-    if (!name || !email || !phone) {
-      return res.status(400).json({
-        status: "error",
-        code: 400,
-        message: "Missing required field",
-      });
-    }
     const contact = await Contacts.addContact(req.body);
     res.status(201).json({ status: "success", code: 201, data: { contact } });
   } catch (error) {
@@ -85,8 +77,8 @@ router.put("/:contactId", async (req, res, next) => {
   }
 });
 
-router.patch("/:contactId", async (req, res, next) => {
-  res.json({ message: "template message" });
-});
+// router.patch("/:contactId", async (req, res, next) => {
+//   res.json({ message: "template message" });
+// });
 
 module.exports = router;
