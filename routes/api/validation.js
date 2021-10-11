@@ -2,11 +2,10 @@ const Joi = require('joi')
 Joi.objectId = require('joi-objectid')(Joi)
 const { ValidLengthContactName } = require('../../config/constant')
 
-const patternName = '[a-zA-Z].*[\\s\\.]*'
 const patternPhone = '\\(?(\\d{3})\\)?[- ]?(\\d{3})[- ]?(\\d{2})[- ]?(\\d{2})'
 
 const schemaContact = Joi.object({
-  name: Joi.string().pattern(new RegExp(patternName)).min(ValidLengthContactName.MIN_LENGTH).max(ValidLengthContactName.MAX_LENGTH).required(),
+  name: Joi.string().min(ValidLengthContactName.MIN_LENGTH).max(ValidLengthContactName.MAX_LENGTH).required(),
   email: Joi.string().email().required(),
   phone: Joi.string().pattern(new RegExp(patternPhone)).required(),
   favorite: Joi.boolean().optional(),
@@ -17,7 +16,7 @@ const schemaContactId = Joi.object({
 })
 
 const schemaUpdateContact = Joi.object({
-  name: Joi.string().pattern(new RegExp(patternName)).min(ValidLengthContactName.MIN_LENGTH).max(ValidLengthContactName.MAX_LENGTH).required(),
+  name: Joi.string().min(ValidLengthContactName.MIN_LENGTH).max(ValidLengthContactName.MAX_LENGTH).required(),
   email: Joi.string().email().optional(),
   phone: Joi.string().pattern(new RegExp(patternPhone)).optional(),
   favorite: Joi.boolean().optional(),

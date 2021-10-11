@@ -35,6 +35,11 @@ const contactSchema = new Schema(
   }
 )
 
+contactSchema.path('name').validate(function (value) {
+  const re = /[A-Z][a-z]+(\s|,)[A-Z][a-z]{1,19}/
+  return re.test(String(value))
+})
+
 const Contact = model('contact', contactSchema)
 
 module.exports = Contact
