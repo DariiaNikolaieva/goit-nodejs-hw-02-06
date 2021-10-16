@@ -1,5 +1,5 @@
 const { Schema, model } = require('mongoose')
-const { ValidLengthContactName } = require('../config/constant')
+const { ValidLengthContactName } = require('../config/constants')
 
 const contactSchema = new Schema(
   {

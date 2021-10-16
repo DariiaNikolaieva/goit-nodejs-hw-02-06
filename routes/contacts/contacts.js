@@ -9,9 +9,9 @@ const {
   deleteContactById,
   updateContactById,
   updateStatusContact,
-} = require('../../controllers/contactsControllers')
+} = require('../../controllers/contacts-controllers')
 
-const { validateContactId, validateContact, validateUpdateContact, validateStatusContact } = require('./validation.js')
+const { validateContactId, validateContact, validateUpdateContact, validateStatusContact } = require('./contact-validation.js')
 
 router.get('/', getContactsList)
 
