@@ -5,7 +5,7 @@ require('dotenv').config();
 const SECRET_KEY = process.env.JWT_SECRET_KEY
 
 const signup = async (req, res, next) => {
-  const { email, password, subscription } = req.body;
+  const { name, email, password, subscription } = req.body;
   const user = await Users.findByEmail(email);
   if (user) {
     return res
@@ -18,7 +18,7 @@ const signup = async (req, res, next) => {
   }
 
   try {
-    const newUser = await Users.createUser({ email, password, subscription });
+    const newUser = await Users.createUser({ name, email, password, subscription });
     return res
     .status(HttpCode.CREATED)
     .json({
@@ -26,6 +26,7 @@ const signup = async (req, res, next) => {
       code: HttpCode.CREATED,
       data: {
         id: newUser.id,
+        name: newUser.name,
         email: newUser.email,
         subscription: newUser.subscription,
       },
