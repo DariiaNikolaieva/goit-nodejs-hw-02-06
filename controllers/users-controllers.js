@@ -4,7 +4,7 @@ const { HttpCode } = require("../config/constants");
 require('dotenv').config();
 const SECRET_KEY = process.env.JWT_SECRET_KEY
 
-const registration = async (req, res, next) => {
+const signup = async (req, res, next) => {
   const { email, password, subscription } = req.body;
   const user = await Users.findByEmail(email);
   if (user) {
@@ -13,7 +13,7 @@ const registration = async (req, res, next) => {
     .json({
       status: "error",
       code: HttpCode.CONFLICT,
-      message: "Email is already existed",
+      message: "Email is in use",
     });
   }
 
@@ -44,7 +44,7 @@ const login = async (req, res, next) => {
     return res.status(HttpCode.UNAUTHORIZED).json({
       status: "error",
       code: HttpCode.UNAUTHORIZED,
-      message: "Invalid credentials",
+      message: "Not authorized",
     });
   }
   const id = user._id;
@@ -68,7 +68,7 @@ const logout = async (req, res, next) => {
 };
 
 module.exports = {
-  registration,
+  signup,
   login,
   logout,
 };
