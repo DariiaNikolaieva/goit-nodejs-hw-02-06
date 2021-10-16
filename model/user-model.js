@@ -1,5 +1,5 @@
 const { Schema, model } = require('mongoose');
-const { Subscription } = require('../config/constants');
+const { ValidNameLength, Subscription } = require('../config/constants');
 const bcrypt = require('bcryptjs');
 
 const SALT_FACTOR = 6;
@@ -8,6 +8,9 @@ const userSchema = new Schema(
   {
     name: {
       type: String,
+      minLength: ValidNameLength.MIN_LENGTH,
+      maxLength: ValidNameLength.MAX_LENGTH,
+      required: [true, 'Set name for contact'],
     },
     email: {
       type: String,

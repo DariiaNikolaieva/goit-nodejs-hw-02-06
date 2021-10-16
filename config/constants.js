@@ -1,4 +1,4 @@
-const ValidLengthContactName = {
+const ValidNameLength = {
   MIN_LENGTH: 3,
   MAX_LENGTH: 30,
 };
@@ -23,7 +23,7 @@ const HttpCode = {
 };
 
 module.exports = {
-  ValidLengthContactName,
+  ValidNameLength,
   Subscription,
   HttpCode,
 };
