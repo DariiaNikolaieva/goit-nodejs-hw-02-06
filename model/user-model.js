@@ -6,7 +6,9 @@ const SALT_FACTOR = 6;
 
 const userSchema = new Schema(
   {
-    password: { type: String, required: [true, "Password is required"] },
+    name: {
+      type: String,
+    },
     email: {
       type: String,
       required: [true, "Email is required"],
@@ -16,6 +18,7 @@ const userSchema = new Schema(
         return re.test(String(value).toLowerCase());
       },
     },
+    password: { type: String, required: [true, "Password is required"] },
     subscription: {
       type: String,
       enum: {

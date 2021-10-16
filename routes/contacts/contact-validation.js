@@ -16,7 +16,7 @@ const schemaContactId = Joi.object({
 })
 
 const schemaUpdateContact = Joi.object({
-  name: Joi.string().min(ValidLengthContactName.MIN_LENGTH).max(ValidLengthContactName.MAX_LENGTH).required(),
+  name: Joi.string().min(ValidLengthContactName.MIN_LENGTH).max(ValidLengthContactName.MAX_LENGTH).optional(),
   email: Joi.string().email().optional(),
   phone: Joi.string().pattern(new RegExp(patternPhone)).optional(),
   favorite: Joi.boolean().optional(),

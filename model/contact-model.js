@@ -1,12 +1,12 @@
-const { Schema, model } = require('mongoose')
+const { Schema, model, SchemaTypes } = require('mongoose')
 const { ValidLengthContactName } = require('../config/constants')
 
 const contactSchema = new Schema(
   {
     name: {
       type: String,
-      minLength: ValidLengthContactName.MIN_LENGTH_NAME,
-      maxLength: ValidLengthContactName.MAX_LENGTH_NAME,
+      minLength: ValidLengthContactName.MIN_LENGTH,
+      maxLength: ValidLengthContactName.MAX_LENGTH,
       required: [true, 'Set name for contact'],
     },
     email: {
@@ -20,6 +20,10 @@ const contactSchema = new Schema(
       unique: true,
     },
     favorite: { type: Boolean, default: false },
+    owner: {
+      type: SchemaTypes.ObjectId,
+      ref: "user",
+    },
   },
   {
     versionKey: false,
