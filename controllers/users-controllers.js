@@ -39,26 +39,28 @@ const signup = async (req, res, next) => {
 const login = async (req, res, next) => {
   const { email, password } = req.body;
   const user = await Users.findByEmail(email);
-  const isValidPassword = await user.isValidPassword(password);
-
-  if (!user || !isValidPassword) {
+  
+  if(user) {
+    const isValidPassword = await user.isValidPassword(password);
+    if(isValidPassword) {
+      const id = user._id;
+      const payload = { id };
+      const token = jwt.sign(payload, SECRET_KEY, { expiresIn: "1h" });
+      await Users.updateToken(id, token);
+    
+      return res.status(HttpCode.OK).json({
+        status: "success",
+        code: HttpCode.OK,
+        data: { token },
+      });
+    }
+  }
     return res.status(HttpCode.UNAUTHORIZED).json({
       status: "error",
       code: HttpCode.UNAUTHORIZED,
       message: "Not authorized",
     });
-  }
-  const id = user._id;
-  const payload = { id };
-  const token = jwt.sign(payload, SECRET_KEY, { expiresIn: "1h" });
-  await Users.updateToken(id, token);
-
-  return res.status(HttpCode.OK).json({
-    status: "success",
-    code: HttpCode.OK,
-    data: { token },
-  });
-};
+  };
 
 const logout = async (req, res, next) => {
   const id = req.user._id;
@@ -68,8 +70,30 @@ const logout = async (req, res, next) => {
   .json({});
 };
 
+const current = async (req, res, next) => {
+  try {
+    if(req.user) {
+      const { name, email } = req.user;
+      return res.status(HttpCode.OK).json({
+        status: "success",
+        code: HttpCode.OK,
+        user: { name, email },
+      });
+    }
+      return res.status(HttpCode.UNAUTHORIZED).json({
+        status: "error",
+        code: HttpCode.UNAUTHORIZED,
+        message: "Not authorized",
+      });
+      
+  } catch (error) {
+    next(error);
+  }
+}
+
 module.exports = {
   signup,
   login,
   logout,
+  current
 };
