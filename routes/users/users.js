@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const guard = require('../../helpers/guard');
+const loginLimit = require('../../helpers/rate-limit-login')
 
 const {
     signup,
@@ -9,7 +10,7 @@ const {
 } = require('../../controllers/users-controllers');
 
 router.post('/signup', signup);
-router.post('/login', login);
+router.post('/login', loginLimit, login);
 router.post('/logout', guard, logout);
 
 module.exports = router;
