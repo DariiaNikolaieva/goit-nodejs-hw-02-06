@@ -2,11 +2,18 @@ const Contact = require('../model/contact-model')
 
 const listContacts = async (userId, query) => {
   // return await Contact.find({owner: userId}).populate({path: "owner", select: "name email"})
-const {limit = 5, offset = 0} = query;
+const {sortBy, sortByDesc, favorite, limit = 5, offset = 0} = query;
+if (favorite !== null) {
+  searchOptions.favorite = favorite;
+}
 const searchOption = {owner: userId};
 const results = await Contact.paginate(searchOption, {
   limit, 
   offset, 
+  sort: {
+    ...(sortBy ? { [`${sortBy}`]: 1 } : {}),
+    ...(sortByDesc ? { [`${sortByDesc}`]: -1 } : {}),
+  },
   populate: {
     path: "owner", 
     select: "name email"
