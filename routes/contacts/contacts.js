@@ -15,18 +15,20 @@ const { validateContactId, validateContact, validateUpdateContact, validateStatu
 
 const guard = require('../../helpers/guard')
 
-router.get('/', guard, getContactsList)
+const wrapError = require('../../helpers/error-handler')
 
-router.get('/:contactId', guard, validateContactId, getContactById)
+router.get('/', guard, wrapError(getContactsList))
 
-router.post('/', guard, validateContact, addContact)
+router.get('/:contactId', guard, validateContactId, wrapError(getContactById))
 
-router.delete('/:contactId', guard, validateContactId, deleteContactById)
+router.post('/', guard, validateContact, wrapError(addContact))
 
-router.put('/:contactId', guard, validateContactId, validateUpdateContact, updateContactById)
+router.delete('/:contactId', guard, validateContactId, wrapError(deleteContactById))
 
-router.patch('/:contactId', guard, [validateContactId, validateUpdateContact], updateContactById)
+router.put('/:contactId', guard, validateContactId, validateUpdateContact, wrapError(updateContactById))
 
-router.patch('/:contactId/favorite', guard, [validateContactId, validateStatusContact], updateStatusContact)
+router.patch('/:contactId', guard, [validateContactId, validateUpdateContact], wrapError(updateContactById))
+
+router.patch('/:contactId/favorite', guard, [validateContactId, validateStatusContact], wrapError(updateStatusContact))
 
 module.exports = router
