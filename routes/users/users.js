@@ -10,8 +10,10 @@ const {
     current
 } = require('../../controllers/users-controllers');
 
-router.post('/signup', signup);
-router.post('/login', loginLimit, login);
+const {validateSignUp, validateLogIn} = require('./user-validation')
+
+router.post('/signup', validateSignUp, signup);
+router.post('/login', validateLogIn, loginLimit, login);
 router.post('/logout', guard, logout);
 
 router.get("/current", guard, current);
