@@ -5,3 +5,5 @@ package*
 .vscode/
 .idea
 .env
+uploads
+users-avatars

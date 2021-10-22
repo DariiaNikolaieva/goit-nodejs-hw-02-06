@@ -29,6 +29,7 @@ const signup = async (req, res, next) => {
         name: newUser.name,
         email: newUser.email,
         subscription: newUser.subscription,
+        avatar: newUser.avatar,
       },
     });
   } catch (error) {
@@ -91,9 +92,18 @@ const current = async (req, res, next) => {
   }
 }
 
+const uploadAvatar = async (req, res, next) => {
+  const pic = req.file;
+  console.log(pic);
+  return res
+      .status(HttpCode.OK)
+      .json({pic});
+};
+
 module.exports = {
   signup,
   login,
   logout,
-  current
+  current,
+  uploadAvatar
 };

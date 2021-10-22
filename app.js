@@ -31,11 +31,12 @@ app.use((req, res) => {
 });
 
 app.use((err, req, res, next) => {
+  const statusCode = err.status || 500
   res
-  .status(500)
+  .status(statusCode)
   .json({ 
-    status: 'fail', 
-    code: 500, 
+    status: statusCode === 500 ? 'fail' : 'error',
+    code: statusCode,
     message: err.message 
   })
 });
