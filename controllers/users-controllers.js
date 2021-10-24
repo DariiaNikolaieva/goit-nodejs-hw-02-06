@@ -43,8 +43,6 @@ const signup = async (req, res, next) => {
 const login = async (req, res, next) => {
   const { email, password } = req.body;
   const user = await Users.findByEmail(email);
-  
-  if(user) {
     const isValidPassword = await user.isValidPassword(password);
     if(isValidPassword) {
       const id = user._id;
@@ -58,13 +56,11 @@ const login = async (req, res, next) => {
         data: { token },
       });
     }
-  }
     return res.status(HttpCode.UNAUTHORIZED).json({
       status: "error",
       code: HttpCode.UNAUTHORIZED,
       message: "Not authorized",
     });
-  };
 
 const logout = async (req, res, next) => {
   const id = req.user._id;
@@ -118,4 +114,6 @@ module.exports = {
   logout,
   current,
   uploadAvatar
-};
+}
+
+
