@@ -45,6 +45,7 @@ const updateContactById = async (req, res, next) => {
       req.body,
       userId
     )
+    console.log(contact);
 
     if (contact) {
       return res
