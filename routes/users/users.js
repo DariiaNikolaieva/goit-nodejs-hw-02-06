@@ -9,7 +9,9 @@ const {
     login,
     logout,
     current,
-    uploadAvatar
+    uploadAvatar,
+    verifyUser,
+    resendVerifyUser,
 } = require('../../controllers/users-controllers');
 
 const {validateSignUp, validateLogIn} = require('./user-validation')
@@ -21,5 +23,8 @@ router.post('/logout', guard, logout);
 router.patch('/avatar', guard, upload.single('avatar'), uploadAvatar);
 
 router.get("/current", guard, current);
+
+router.get('/verify/:verificationToken', verifyUser);
+router.post('verify', resendVerifyUser)
 
 module.exports = router;
