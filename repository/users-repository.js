@@ -8,6 +8,10 @@ const findById = async (id) => {
   return await User.findById(id);
 };
 
+const findUserByVerifyToken = async (verifyToken) => {
+  return await User.findOne({ verifyToken });
+};
+
 const createUser = async (options) => {
     const user = new User(options);
     return await user.save();
@@ -32,4 +36,5 @@ module.exports = {
     updateToken,
     updateAvatar,
     updateTokenVerify,
+    findUserByVerifyToken,
 }
