@@ -61,6 +61,7 @@ const login = async (req, res, next) => {
       code: HttpCode.UNAUTHORIZED,
       message: "Not authorized",
     });
+  }
 
 const logout = async (req, res, next) => {
   const id = req.user._id;
@@ -114,6 +115,4 @@ module.exports = {
   logout,
   current,
   uploadAvatar
-}}
-
-
+}
