@@ -3,6 +3,8 @@ const path = require('path');
 const Users = require("../repository/users-repository");
 const UploadService = require('../services/file-upload')
 const { HttpCode } = require("../config/constants");
+const EmailService = require('../services/email/email-service')
+const { CreateSenderSendgrid } = require('../services/email/email-sender')
 const mkdirp = require("mkdirp");
 require('dotenv').config();
 const SECRET_KEY = process.env.JWT_SECRET_KEY
@@ -22,7 +24,17 @@ const signup = async (req, res, next) => {
 
   try {
     // TODO: Send email for verify users
+
     const newUser = await Users.createUser({ name, email, password, subscription });
+    const emailService = new EmailService(
+        process.env.NODE_ENV,
+        new CreateSenderSendgrid()
+    );
+    const statusEmail = await emailService.sendVerifyEmail(
+        newUser.email,
+        newUser.name,
+        newUser.verifyToken
+    );
     return res
     .status(HttpCode.CREATED)
     .json({
@@ -34,6 +46,7 @@ const signup = async (req, res, next) => {
         email: newUser.email,
         subscription: newUser.subscription,
         avatar: newUser.avatar,
+        successEmail: statusEmail,
       },
     });
   } catch (error) {
