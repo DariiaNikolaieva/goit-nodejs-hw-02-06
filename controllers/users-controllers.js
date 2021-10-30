@@ -128,14 +128,14 @@ const verifyUser = async (req, res, next) => {
       status: "success",
       code: HttpCode.OK,
       data: {
-        message: "Success",
+        message: "Verification is successful",
       },
     });
   }
   return res.status(HttpCode.BAD_REQUEST).json({
     status: "error",
     code: HttpCode.BAD_REQUEST,
-    message: "Help!.. Invalid credentials",
+    message: "User was not found",
   });
 };
 
