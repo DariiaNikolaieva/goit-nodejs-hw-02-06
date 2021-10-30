@@ -74,6 +74,7 @@ const login = async (req, res, next) => {
       code: HttpCode.OK,
       data: { token },
     });
+  }
 
 const logout = async (req, res, next) => {
   const id = req.user._id;
@@ -132,6 +133,6 @@ module.exports = {
   uploadAvatar,
   verifyUser,
   resendVerifyUser,
-}}
+}
 
 
